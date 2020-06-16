@@ -10,7 +10,7 @@
 </head>
 <body class="bg-primary">
   <header class="w-100 p-2 text-white">
-    <img src="assets/img/Parach2.png" alt="parach-banner" class="w-25 m-0 p-0">
+    <img src="assets/img/Parach2.png" alt="parach-banner" class="m-0 p-0 banner-img">
     <a href="https://parachictacademy.com.ng/" class="text-white weblink" target="_blank">Official Website</a>
     <p class="m-0 ml-2 p-0 font-weight-bold"><em>... real-time Inventory Management System</em></p>
   </header>

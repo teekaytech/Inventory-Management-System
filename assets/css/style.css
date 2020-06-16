@@ -24,6 +24,10 @@ body {
     right: 1rem;
 }
 
+.banner-img {
+    width: 20%;
+}
+
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -58,7 +62,7 @@ body {
 }
 
 #sidebar ul li a:hover, .sub-list:hover {
-    color: var(--background);
+    color: var(--textColor);
     background: var(--first);
 }
 
