@@ -98,8 +98,20 @@ a[data-toggle="collapse"] {
 }
 
 .login-form {
-  margin: auto 0;
-  height: 80vh;
+  margin: auto;
+  /* height: 70vh; */
+}
+
+.form-box {
+    width: 40%;
+    margin: 5rem auto auto auto;
+    background-color: var(--textColor);
+    border-radius: 0.5rem;
+}
+
+.login-head {
+    color: var(--second);
+    font-weight: bolder;
 }
 
 /* ---------------------------------------------------
