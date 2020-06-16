@@ -28,7 +28,7 @@
       </div>
       <button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
     </form>
-    <footer class="text-center mt-5">
+    <footer class="text-center mt-5 pb-2">
       <p class="footer-text">Copyright &copy; Parach Computers, 2020.</p>
     </footer>
     </section>
