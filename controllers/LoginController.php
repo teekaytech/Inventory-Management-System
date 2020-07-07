@@ -1,6 +1,7 @@
 <?php
 require_once '../models/admin.php';
 @session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ((!empty($_POST['username'])) && (!empty($_POST['password']))) {
         $data['username'] = $_POST['username'];
@@ -9,9 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $admin = Admin::admin_login($data);
             if (password_verify($data['password'], $admin['password'])) {
                 $_SESSION['admin_id'] = $admin['id'];
-                $info['message'] = "You have been successfully logged in to your dashboard";
+                $info['info'] = "You have been successfully logged in to your dashboard";
                 header('location: ../views/dashboard.php');
-                echo 'login successful';
             } else {
                 $_SESSION['info'] = 'Invalid password, try again.';
                 header('location: ../index.php');
@@ -26,4 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     die();
 }
+
+
 ?>

@@ -1,5 +1,18 @@
 <?php
+require_once '../models/admin.php';
+@session_start();
+
 class DashboardLayout {
+
+    public $admin;
+
+    public function __construct(){
+        if (!isset($_SESSION['admin_id'])) {
+            $_SESSION['info'] = "Please, login to continue...";
+            header('location: ../index.php');
+        }
+        $this->admin = Admin::fetch_admin($_SESSION['admin_id']);
+    }
 
     public function pageHeader() {
         ?>
@@ -63,8 +76,8 @@ class DashboardLayout {
             <div class="w-25 ">
                 <div class="d-flex justify-content-end">
                     <div class="text-right px-2 pt-2">
-                        <span class="d-block"> username</span>
-                        <a href="#" class="text-white">Logout</a>
+                        <span class="d-block"> <?php echo $this->admin['firstname'].' '.$this->admin['lastname']; ?></span>
+                        <a href="../controllers/LogoutController.php" class="text-white">Logout</a>
                     </div>
                     <div class="">
                         <img src="../assets/img/avatar.png" alt="user-image" class="img-fluid img-thumbnail user-img">

@@ -15,4 +15,18 @@ class Admin {
         return $user;
     }
 
+    public static function fetch_admin($id) {
+        $user = false;
+        try {
+            $query = Connection::dbEngine()->prepare("SELECT * FROM admin WHERE id = :id");
+            $query->execute(array(':id' => $id));
+            $user = $query->fetch();
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+        return $user;
+    }
+
+
+
 }
