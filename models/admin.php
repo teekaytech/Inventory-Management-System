@@ -18,7 +18,8 @@ class Admin {
     public static function fetch_admin($id) {
         $user = false;
         try {
-            $query = Connection::dbEngine()->prepare("SELECT * FROM admin WHERE id = :id");
+            $query = Connection::dbEngine()->prepare("SELECT `firstname`, `lastname`, `middlename`, `email`,
+                                                                `phone_no`, `role_id`, `status` FROM admin WHERE id = :id");
             $query->execute(array(':id' => $id));
             $user = $query->fetch();
         } catch(PDOException $e) {

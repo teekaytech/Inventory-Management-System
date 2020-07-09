@@ -76,7 +76,7 @@ class DashboardLayout {
             <div class="w-25 ">
                 <div class="d-flex justify-content-end">
                     <div class="text-right px-2 pt-2">
-                        <span class="d-block"> <?php echo $this->admin['firstname'].' '.$this->admin['lastname']; ?></span>
+                        <span class="d-block"> <?php echo $this->admin['firstname'].' '.strtoupper($this->admin['lastname']); ?></span>
                         <a href="../controllers/LogoutController.php" class="text-white">Logout</a>
                     </div>
                     <div class="">

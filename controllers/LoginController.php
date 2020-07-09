@@ -8,6 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data['password'] = $_POST['password'];
         if (Admin::admin_login($data)) {
             $admin = Admin::admin_login($data);
+            if ($admin['status'] == 0) {
+                $_SESSION['info'] = 'Your account has been deactivated. Contact the manager for complaint.';
+                header('location: ../index.php'); return;
+            }
             if (password_verify($data['password'], $admin['password'])) {
                 $_SESSION['admin_id'] = $admin['id'];
                 $_SESSION['success'] = "You have been successfully logged in to your dashboard";
@@ -26,6 +30,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     die();
 }
-
-
 ?>
