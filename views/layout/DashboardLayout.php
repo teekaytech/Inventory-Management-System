@@ -50,7 +50,8 @@ class DashboardLayout {
              </div>
 
              <ul class="list-unstyled components py-4">
-                <li><a href="#">Admin Profile</a></li>
+                 <li><a href="dashboard.php">Home</a></li>
+                <li><a href="profile.php">Admin Profile</a></li>
                 <li>
                    <a href="#RegSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Registration</a>
                    <ul class="collapse list-unstyled" id="RegSubmenu">
