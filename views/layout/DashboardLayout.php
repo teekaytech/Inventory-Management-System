@@ -58,7 +58,7 @@ class DashboardLayout {
                       <li class="sub-list"><a href="#">Prospective Student</a></li>
                    </ul>
                 </li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="../controllers/LogoutController.php">Logout</a></li>
              </ul>
           </nav>
         </div>
@@ -120,6 +120,33 @@ class DashboardLayout {
             });
         </script>
         <?php
+    }
+
+    public function notification_messages() {
+        if (isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></strong>
+            </div> <?php
+        }
+        if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-danger alert-block" id="message-alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></strong>
+            </div> <?php
+        }
+        if (isset($_SESSION['warning'])) { ?>
+            <div class="alert alert-warning alert-block" id="message-alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong><?php echo $_SESSION['warning']; unset($_SESSION['warning']); ?></strong>
+            </div> <?php
+        }
+        if (isset($_SESSION['info'])) { ?>
+            <div class="alert alert-info alert-block" id="message-alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong><?php echo $_SESSION['info']; unset($_SESSION['info']); ?></strong>
+            </div> <?php
+        }
     }
 }
 

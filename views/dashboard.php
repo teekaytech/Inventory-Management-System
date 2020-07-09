@@ -13,9 +13,10 @@ $page = new DashboardLayout();
       <!-- Page Content  -->
     <div id="content" class="content">
 
-        <?php echo $page->mainContentHeader(); ?>
+        <?php echo $page->mainContentHeader();
 
-        <section class="p-5">
+        echo $page->notification_messages(); ?>
+        <section class="px-5 pt-3">
             <h2>Dear Firstname LASTNAME</h2>
             <p>Welcome to your dashboard</p>
         </section>
