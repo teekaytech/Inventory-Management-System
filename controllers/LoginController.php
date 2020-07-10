@@ -1,13 +1,14 @@
 <?php
-require_once '../models/admin.php';
+require_once 'DashboardController.php';
 @session_start();
 
+$access = new DashboardController();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ((!empty($_POST['username'])) && (!empty($_POST['password']))) {
         $data['username'] = $_POST['username'];
         $data['password'] = $_POST['password'];
-        if (Admin::admin_login($data)) {
-            $admin = Admin::admin_login($data);
+        if ($access->check_login($data)) {
+            $admin = $access->check_login($data);
             if ($admin['status'] == 0) {
                 $_SESSION['info'] = 'Your account has been deactivated. Contact the manager for complaint.';
                 header('location: ../index.php'); return;

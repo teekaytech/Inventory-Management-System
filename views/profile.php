@@ -1,5 +1,6 @@
 <?php
 require_once('layout/DashboardLayout.php');
+@session_start();
 
 $page = new DashboardLayout();
 ?>
@@ -24,7 +25,7 @@ $page = new DashboardLayout();
         </section>
         <article class="mx-5">
             <p class="text-danger"><em>All fields marked with (*) are compulsory</em></p>
-            <form>
+            <form method="post" action="../controllers/UpdateProfile.php">
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="firstname">* Firstname</label>
@@ -78,7 +79,7 @@ $page = new DashboardLayout();
                                placeholder="leave blank if you do not want to change the password">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Update Profile</button>
+                <button type="submit" name="update" class="btn btn-primary">Update Profile</button>
             </form>
         </article>
     </section>
