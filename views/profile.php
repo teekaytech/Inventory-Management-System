@@ -25,12 +25,12 @@ $page = new DashboardLayout();
         </section>
         <article class="mx-5">
             <p class="text-danger"><em>All fields marked with (*) are compulsory</em></p>
-            <form method="post" action="../controllers/UpdateProfile.php">
+            <form method="post" action="../controllers/processes.php">
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="firstname">* Firstname</label>
                         <input type="text" class="form-control" id="firstname" name="firstname"
-                               value="<?php echo $admin['firstname']; ?>" autofocus>
+                               value="<?php echo $admin['firstname']; ?>" autofocus required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="middlename">* Middlename</label>

@@ -1,5 +1,7 @@
 <?php
 require_once '../models/admin.php';
+require_once '../models/course.php';
+require_once '../models/sourceChannel.php';
 @session_start();
 
 class DashboardLayout {
@@ -53,12 +55,21 @@ class DashboardLayout {
                  <li><a href="dashboard.php">Home</a></li>
                 <li><a href="profile.php">Admin Profile</a></li>
                 <li>
-                   <a href="#RegSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Registration</a>
+                   <a href="#RegSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Forms</a>
                    <ul class="collapse list-unstyled" id="RegSubmenu">
-                      <li class="sub-list"><a href="#">New Enquiry</a></li>
-                      <li class="sub-list"><a href="#">Prospective Student</a></li>
+                      <li class="sub-list"><a href="enquiry.php">New Enquiry</a></li>
+                      <li class="sub-list"><a href="students.php">Prospective Student</a></li>
                    </ul>
                 </li>
+                 <?php if ($this->admin['role_id'] == 1) { ?>
+                 <li>
+                     <a href="#SuperUserMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Super Admin</a>
+                     <ul class="collapse list-unstyled" id="SuperUserMenu">
+                         <li class="sub-list"><a href="admins.php">Admins</a></li>
+                         <li class="sub-list"><a href="reports.php">Reports</a></li>
+                     </ul>
+                 </li>
+                 <?php } ?>
                 <li><a href="../controllers/LogoutController.php">Logout</a></li>
              </ul>
           </nav>
@@ -148,6 +159,14 @@ class DashboardLayout {
                 <strong><?php echo $_SESSION['info']; unset($_SESSION['info']); ?></strong>
             </div> <?php
         }
+    }
+
+    public function all_courses() {
+        return Course::all_courses();
+    }
+
+    public function all_channels() {
+        return SourceChannel::all_courses();
     }
 }
 

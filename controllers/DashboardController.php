@@ -1,6 +1,8 @@
 <?php
 @session_start();
 require_once '../models/admin.php';
+require_once '../models/course.php';
+require_once '../models/inquiry.php';
 
 class DashboardController {
 
@@ -27,7 +29,7 @@ class DashboardController {
             $request = $this->test_input($request);
             return $request;
         } else {
-            $_SESSION['error'] = $field.' cannot be blank.';
+            $_SESSION['error'] = $field.' field cannot be blank.';
             return false;
         }
     }
@@ -60,5 +62,19 @@ class DashboardController {
 
     public function admin_update($data) {
         return Admin::update_profile($data, $_SESSION['admin_id']);
+    }
+
+    public function fetch_courses() {
+        return Course::all_courses();
+    }
+
+    public function create_new_inquiry($data) {
+        return Inquiry::create_enquiry($data, $_SESSION['admin_id']);
+    }
+
+    public function find_existing_inquiry($email) {
+        if (Inquiry::find_inquiry($email) > 0){
+            return true;
+        } return false;
     }
 }
