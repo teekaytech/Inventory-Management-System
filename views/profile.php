@@ -30,7 +30,7 @@ $page = new DashboardLayout();
                     <div class="form-group col-md-4">
                         <label for="firstname">* Firstname</label>
                         <input type="text" class="form-control" id="firstname" name="firstname"
-                               value="<?php echo $admin['firstname']; ?>" autofocus required>
+                               value="<?php echo $admin['firstname']; ?>" autofocus>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="middlename">* Middlename</label>
@@ -75,7 +75,7 @@ $page = new DashboardLayout();
                     </div>
                     <div class="form-group col-md-6">
                         <label for="current">Current Password</label>
-                        <input type="password" class="form-control" id="current" name="password"
+                        <input type="password" class="form-control" id="current" name="current_password"
                                placeholder="leave blank if you do not want to change the password">
                     </div>
                 </div>

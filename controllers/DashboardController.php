@@ -16,15 +16,49 @@ class DashboardController {
     public function check_login($data) {
         return Admin::admin_login($data);
     }
+
     public function getAdmin() {
         return $this->admin;
     }
 
-    public function filter_data($request) {
-        $values = [];
-        foreach ($request as $k => $v) {
-            array_push($values, $v);
+
+    public function validate_data($request, $field) {
+        if (!empty($request)) {
+            $request = $this->test_input($request);
+            return $request;
+        } else {
+            $_SESSION['error'] = $field.' cannot be blank.';
+            return false;
         }
-        return $values;
+    }
+
+    public function validate_pswd($new, $confirm, $current) {
+        if (password_verify($current, $this->getAdmin()['password'])) {
+            if (($new == $confirm) && !empty($new) && !empty($confirm)) {
+                if (strlen($new) >= 6) {
+                    return password_hash($new, PASSWORD_DEFAULT);
+                } else {
+                    $_SESSION['error'] = 'New password should be minimum of 6 characters.';
+                    return false;
+                }
+            }  else {
+                $_SESSION['error'] = 'New password and confirm password not the same.';
+                return false;
+            }
+        } else {
+            $_SESSION['error'] = 'Current Password is invalid.';
+            return false;
+        }
+    }
+
+    public function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    public function admin_update($data) {
+        return Admin::update_profile($data, $_SESSION['admin_id']);
     }
 }
