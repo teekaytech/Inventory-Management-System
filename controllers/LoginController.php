@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             if (password_verify($data['password'], $admin['password'])) {
                 $_SESSION['admin_id'] = $admin['id'];
-                $_SESSION['success'] = "You have been successfully logged in to your dashboard";
+                $_SESSION['success'] = "You have successfully logged in to your dashboard";
                 header('location: ../views/dashboard.php');
             } else {
                 $_SESSION['info'] = 'Invalid password, try again.';

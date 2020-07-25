@@ -3,6 +3,7 @@
 require_once '../models/admin.php';
 require_once '../models/course.php';
 require_once '../models/inquiry.php';
+require_once '../models/student.php';
 
 class DashboardController {
 
@@ -74,6 +75,17 @@ class DashboardController {
 
     public function find_existing_inquiry($email) {
         if (Inquiry::find_inquiry($email) > 0){
+            return true;
+        } return false;
+    }
+
+    public function create_new_student($data) {
+        return Student::create_student($data, $_SESSION['admin_id']);
+    }
+
+    public function find_existing_student($email) {
+        Student::find_student($email);
+        if (Student::find_student($email) > 0){
             return true;
         } return false;
     }

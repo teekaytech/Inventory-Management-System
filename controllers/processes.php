@@ -3,8 +3,8 @@
 require_once ('DashboardController.php');
 
 $activities = new DashboardController();
+$data = [];
 if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['update']))) {
-    $data = [];
     if (isset($_POST['current_password']) && !empty($_POST['current_password'])) {
         $data['password'] = $activities->validate_pswd($_POST['password'], $_POST['confirm'], $_POST['current_password']);
     }
@@ -27,7 +27,6 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['update']))) {
 }
 
 if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['submit_enquiry']))) {
-    $data = [];
     $data['date'] = $activities->validate_data($_POST['date'], 'Date');
     $data['name'] = $activities->validate_data($_POST['name'], 'Name');
     $data['address'] = $activities->validate_data($_POST['address'], 'Address');
@@ -51,4 +50,33 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['submit_enquiry'])))
         }
     }
     header('location: ../views/enquiry.php');
+}
+
+if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['register_student']))) {
+    $data['firstname'] = $activities->validate_data($_POST['firstname'], 'Firstname');
+    $data['middlename'] = $activities->validate_data($_POST['middlename'], 'Middlename');
+    $data['lastname'] = $activities->validate_data($_POST['lastname'], 'Lastname');
+    $data['address'] = $activities->validate_data($_POST['address'], 'Address');
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || empty($_POST['email'])) {
+        $_SESSION['error'] = 'Invalid email. Please try again';
+        $data['email'] = false;
+    } else {
+        $data['email'] = $activities->test_input($_POST['email']);
+    }
+    $data['phone_no'] = $activities->validate_data($_POST['phone_no'], 'Phone Number');
+    $data['course_id'] = $activities->validate_data($_POST['course_id'], 'Course');
+    $data['start_date'] = $activities->validate_data($_POST['start_date'], 'Start Date');
+    $data['end_date'] = $activities->validate_data($_POST['end_date'], 'End Date');
+    $data['channel_id'] = $activities->validate_data($_POST['channel_id'], 'Channel');
+
+    if (!in_array(false, $data)) {
+        if($activities->find_existing_student($data['email'])) {
+            $_SESSION['warning'] = 'NOT CREATED :: Another student with '.$data['email'].' already exists!';
+        } else {
+            if ($activities->create_new_student($data))
+            { $_SESSION['success'] = 'Student created successfully. Thank you.'; }
+            else { $_SESSION['warning'] = 'Unable to create student. Please, try again.'; }
+        }
+    }
+    header('location: ../views/students.php');
 }
