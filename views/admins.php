@@ -20,68 +20,56 @@ $page = new DashboardLayout();
     <section>
         <?php $admin = $page->admin; ?>
         <section class="mx-4 my-4">
-            <h3>All Admins Page</h3>(create new, enable/disable existing, see existing)
+            <h3>All Administrators Page</h3>(create new, enable/disable existing, see existing)
         </section>
-        <section class="row mx-5">
+        <section class="row mx-5 mt-5">
             <div class="col-md-6">
-                <h4>Create New Admin</h4>
-                <article class="">
+                <h5>Create New Admin</h5>
+                <article class="mr-5 pr-5">
                     <p class="text-danger"><em>All fields marked with (*) are compulsory</em></p>
                     <form method="post" action="../controllers/processes.php">
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="date">* Date:</label>
-                                <input type="datetime-local" class="form-control" id="date" name="date" autofocus required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="name">* Fullname</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                            <div class="form-group col-md-12">
+                                <label for="username">* Username</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="address">* Address</label>
-                                <input type="text" class="form-control" id="address" name="address" required>
+                                <label for="password">* Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="email">* Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="phone">* Phone Number</label>
-                                <input type="text" class="form-control" id="phone" name="phone_no" required>
+                            <div class="form-group col-md-12">
+                                <label for="password">* Role</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="course">* Course Request</label>
-                                <select class="form-control" name="course" id="course" required>
-                                    <option value="">Please, select...</option>
-                                    <?php foreach ($page->all_courses() as $course) { ?>
-                                        <option value="<?php echo $course['id']; ?>"><?php echo $course['name']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="details">How did you hear about us?</label>
-                                <select class="form-control" id="details" name="details" required>
-                                    <option value="">Please, select...</option>
-                                    <option value="Social Media">Social Media (Facebook, LinkedIn)</option>
-                                    <option value="Google Ads">Advert (Google Ads)</option>
-                                    <option value="Official Website">Official Website</option>
-                                    <option value="Referral">Referral</option>
-                                    <option value="Others">Others.</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" name="submit_enquiry" class="btn btn-primary">Submit Enquiry</button>
+                        <button type="submit" name="submit_enquiry" class="btn btn-primary">Create New Admin</button>
                     </form>
                 </article>
             </div>
-            <div class="col-md-6 bg-danger">
-                <h4>Existing Admins</h4>
+            <div class="col-md-6">
+                <h5 class="mb-4">Existing Admins</h5>
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Account Status</th>
+                        <th scope="col">Control</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
