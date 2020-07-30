@@ -52,4 +52,15 @@ class Admin {
         }
     }
 
+    public static function all_admins() {
+        try {
+            $query = Connection::dbEngine()->prepare("SELECT `id`, `firstname`, `lastname`, `middlename`, `email`,
+                                                                `phone_no`, `role_id`, `status`, `username` FROM admin");
+            $query->execute();
+            return $query->fetchAll();
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
 }

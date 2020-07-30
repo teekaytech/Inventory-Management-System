@@ -43,7 +43,12 @@ $page = new DashboardLayout();
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="password">* Role</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <select class="form-control" id="roles" name="role_id" required>
+                                    <option value="">Please, select...</option>
+                                    <?php foreach ($page->all_roles() as $role) { ?>
+                                        <option value="<?php echo $role['id']; ?>"><?php echo $role['name']; ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <button type="submit" name="submit_enquiry" class="btn btn-primary">Create New Admin</button>
@@ -62,12 +67,15 @@ $page = new DashboardLayout();
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    <?php foreach ($page->all_admins() as $sn => $admin) {
+                        if ($admin['id'] == $_SESSION['admin_id']) { continue; } ?>
+                        <tr>
+                            <th scope="row"><?php echo $sn; ?></th>
+                            <td><?php echo $admin['username']; ?></td>
+                            <td><?php echo $admin['status'] ==  1 ? 'Enabled': 'Disabled'; ?></td>
+                            <td>Acct Sw</thttps://github.com/teekaytech/Parach-IVMSd>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>

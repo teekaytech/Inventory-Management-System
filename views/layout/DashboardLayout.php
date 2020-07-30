@@ -2,6 +2,7 @@
 require_once '../models/admin.php';
 require_once '../models/course.php';
 require_once '../models/sourceChannel.php';
+require_once '../models/role.php';
 @session_start();
 
 class DashboardLayout {
@@ -167,6 +168,14 @@ class DashboardLayout {
 
     public function all_channels() {
         return SourceChannel::all_courses();
+    }
+
+    public function all_roles(){
+        return Role::all_roles();
+    }
+
+    public function all_admins() {
+        return Admin::all_admins();
     }
 }
 
