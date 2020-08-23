@@ -62,7 +62,7 @@ class DashboardLayout {
                       <li class="sub-list"><a href="students.php">Prospective Student</a></li>
                    </ul>
                 </li>
-                 <?php if ($this->admin['role_id'] == 1) { ?>
+                 <?php if ($this->admin['role_id'] == 0) { ?>
                  <li>
                      <a href="#SuperUserMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Super Admin</a>
                      <ul class="collapse list-unstyled" id="SuperUserMenu">

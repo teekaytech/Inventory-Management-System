@@ -46,7 +46,7 @@ $page = new DashboardLayout();
                                 <select class="form-control" id="roles" name="role_id" required>
                                     <option value="">Please, select...</option>
                                     <?php foreach ($page->all_roles() as $role) { ?>
-                                        <option value="<?php echo $role['id']; ?>"><?php echo $role['name']; ?></option>
+                                        <option value="<?php echo $role['id']-1; ?>"><?php echo $role['name']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

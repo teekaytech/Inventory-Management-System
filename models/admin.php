@@ -105,7 +105,7 @@ class Admin {
     public static function delete($id) {
         try {
             $query = Connection::dbEngine()->prepare("UPDATE admin SET delete_status=:ds, status=:s WHERE id=:a_id");;
-            $query->execute(array('ds'=>1, 's'=>2, 'a_id'=>(int)$id));
+            $query->execute(array('ds'=>1, 's'=>0, 'a_id'=>(int)$id));
             return true;
         }
         catch(PDOException $e) {
