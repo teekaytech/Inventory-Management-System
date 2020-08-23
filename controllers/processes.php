@@ -80,3 +80,33 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['register_student'])
     }
     header('location: ../views/students.php');
 }
+
+if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['create_admin']))) {
+    $data['username'] = $activities->validate_data($_POST['username'], 'Username');
+    $data['role_id'] = $activities->validate_data($_POST['role_id'], 'Role Option');
+    $data['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    if (!in_array(false, $data)) {
+        if ($activities->create_new_admin($data)) { $_SESSION['success'] = 'Admin registered successfully.'; }
+        else { $_SESSION['warning'] = 'Unable to create new admin. Please, try again!'; }
+    }
+    header('location: ../views/admins.php');
+}
+
+if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['disable_admin']))) {
+    if ($activities->disable_admin($_POST['admin_id'])) { $_SESSION['success'] = 'Admin disabled successfully.'; }
+    else { $_SESSION['warning'] = 'Unable to disable admin. Please, try again!'; }
+    header('location: ../views/admins.php');
+}
+
+if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['enable_admin']))) {
+    if ($activities->enable_admin($_POST['admin_id'])) { $_SESSION['success'] = 'Admin enabled successfully.'; }
+    else { $_SESSION['warning'] = 'Unable to enable admin. Please, try again!'; }
+    header('location: ../views/admins.php');
+}
+
+if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['delete_admin']))) {
+    if ($activities->delete_admin($_POST['admin_id'])) { $_SESSION['success'] = 'Admin deleted successfully.'; }
+    else { $_SESSION['warning'] = 'Unable to delete admin. Please, try again!'; }
+    header('location: ../views/admins.php');
+}

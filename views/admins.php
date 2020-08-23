@@ -51,7 +51,7 @@ $page = new DashboardLayout();
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" name="submit_enquiry" class="btn btn-primary">Create New Admin</button>
+                        <button type="submit" name="create_admin" class="btn btn-primary">Create New Admin</button>
                     </form>
                 </article>
             </div>
@@ -72,8 +72,32 @@ $page = new DashboardLayout();
                         <tr>
                             <th scope="row"><?php echo $sn; ?></th>
                             <td><?php echo $admin['username']; ?></td>
-                            <td><?php echo $admin['status'] ==  1 ? 'Enabled': 'Disabled'; ?></td>
-                            <td>Acct Sw</thttps://github.com/teekaytech/Parach-IVMSd>
+                            <td>
+                                <?php
+                                if ($admin['status'] ==  1) { ?>
+                                    <form method="post" action="../controllers/processes.php">
+                                       <input type="hidden" name="admin_id" value="<?php echo $admin['id']; ?>">
+                                        <button type="submit" name="disable_admin" class="badge badge-success">
+                                            <i class="fa fa-power-off"></i> Is active
+                                        </button>
+                                    </form>
+                                <?php } else { ?>
+                                    <form method="post" action="../controllers/processes.php">
+                                        <input type="hidden" name="admin_id" value="<?php echo $admin['id']; ?>">
+                                        <button type="submit" name="enable_admin" class="badge badge-warning">
+                                            <i class="fa fa-power-off"></i> Not active
+                                        </button>
+                                    </form>
+                                <?php } ?>
+                            </td>
+                            <td>
+                                <form method="post" action="../controllers/processes.php">
+                                    <input type="hidden" name="admin_id" value="<?php echo $admin['id']; ?>">
+                                    <button type="submit" name="delete_admin" class="badge badge-danger">
+                                        <i class="fa fa-user-times"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     <?php } ?>
                     </tbody>

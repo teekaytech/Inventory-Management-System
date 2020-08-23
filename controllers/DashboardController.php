@@ -90,4 +90,19 @@ class DashboardController {
         } return false;
     }
 
+    public function create_new_admin($data) {
+        return Admin::create_admin($data);
+    }
+
+    public function disable_admin($id) {
+        return Admin::disable($id);
+    }
+
+    public function enable_admin($id) {
+        return Admin::enable($id);
+    }
+
+    public function delete_admin($id) {
+        return Admin::delete($id);
+    }
 }

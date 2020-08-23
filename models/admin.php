@@ -55,7 +55,9 @@ class Admin {
     public static function all_admins() {
         try {
             $query = Connection::dbEngine()->prepare("SELECT `id`, `firstname`, `lastname`, `middlename`, `email`,
-                                                                `phone_no`, `role_id`, `status`, `username` FROM admin");
+                                                                `phone_no`, `role_id`, `status`, `username` FROM admin
+                                                                WHERE `delete_status`=:stat");
+            $query->execute(array('stat'=>0));
             $query->execute();
             return $query->fetchAll();
         } catch(PDOException $e) {
@@ -63,4 +65,53 @@ class Admin {
             return false;
         }
     }
+
+    public static function create_admin($data) {
+        try {
+            $query = Connection::dbEngine()->prepare("INSERT INTO admin (`username`, `password`, `role_id`)
+                                                                 VALUES (:uname, :pswd, :r_id)");
+            $query->execute(array(':uname' => $data['username'], ':pswd' => $data['password'], ':r_id' => $data['role_id']));
+            return true;
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function disable($id) {
+        try {
+            $query = Connection::dbEngine()->prepare("UPDATE admin SET status=:stts WHERE id=:a_id");;
+            $query->execute(array('stts' => 2, 'a_id' => (int)$id));
+            return true;
+        }
+        catch(PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function enable($id) {
+        try {
+            $query = Connection::dbEngine()->prepare("UPDATE admin SET status=:stts WHERE id=:a_id");;
+            $query->execute(array('stts' => 1, 'a_id' => (int)$id));
+            return true;
+        }
+        catch(PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function delete($id) {
+        try {
+            $query = Connection::dbEngine()->prepare("UPDATE admin SET delete_status=:ds, status=:s WHERE id=:a_id");;
+            $query->execute(array('ds'=>1, 's'=>2, 'a_id'=>(int)$id));
+            return true;
+        }
+        catch(PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 }
