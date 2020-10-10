@@ -1,5 +1,6 @@
 <?php
 require_once '../models/connection.php';
+date_default_timezone_set('Africa/Lagos');
 
 class Inquiry {
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 10, 2020 at 05:55 PM
+-- Generation Time: Oct 10, 2020 at 06:32 PM
 -- Server version: 8.0.21-0ubuntu0.20.04.4
 -- PHP Version: 7.4.3
 
@@ -106,7 +106,7 @@ INSERT INTO `courses` (`id`, `name`) VALUES
 
 CREATE TABLE `inquiries` (
   `id` int NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` datetime NOT NULL,
   `name` varchar(100) NOT NULL,
   `address` varchar(200) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -115,6 +115,13 @@ CREATE TABLE `inquiries` (
   `channel_id` tinyint NOT NULL,
   `admin_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `inquiries`
+--
+
+INSERT INTO `inquiries` (`id`, `date`, `name`, `address`, `email`, `phone_no`, `course_id`, `channel_id`, `admin_id`) VALUES
+(1, '2020-10-10 00:00:00', 'Taofeek Olalere', '16C, Temidire Community, Powerline Area, Along Ibadan/Ilorin Expressway,  Moniya', 'olaleretaofeek@live.com', '07085516354', 7, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -151,8 +158,8 @@ CREATE TABLE `students` (
   `email` varchar(100) NOT NULL,
   `phone_no` varchar(20) NOT NULL,
   `course_id` int NOT NULL,
-  `start_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `end_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
   `channel_id` int NOT NULL,
   `admin_id` int NOT NULL,
   `created_at` datetime NOT NULL
@@ -232,7 +239,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `inquiries`
 --
 ALTER TABLE `inquiries`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roles`
