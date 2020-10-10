@@ -19,20 +19,20 @@
     <section class="form-box px-5 pt-5 pb-0">
       <p class="text-center login-head h5 mb-4">Admin Login</p>
       <form method="POST" action="controllers/LoginController.php">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-      </div>
-      <?php if (isset($_SESSION['info'])) {
-          echo "<p class='text-center text-danger'>".$_SESSION['info']."</p>";
-          session_destroy();
-      } ?>
-      <button type="submit" class="btn btn-primary btn-block mt-4" name="login">Login</button>
-    </form>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+          </div>
+          <?php if (isset($_SESSION['info'])) {
+              echo "<p class='text-center text-danger'>".$_SESSION['info']."</p>";
+              session_destroy();
+          } ?>
+          <button type="submit" class="btn btn-primary btn-block mt-4" name="login">Login</button>
+      </form>
     <footer class="text-center mt-5 pb-2">
       <p class="footer-text">Copyright &copy; Parach Computers, 2020.</p>
     </footer>

@@ -132,6 +132,7 @@ class DashboardLayout {
                 });
             });
         </script>
+        <script src="../scripts/enquiry.js" type="text/javascript"></script>
         <?php
     }
 
