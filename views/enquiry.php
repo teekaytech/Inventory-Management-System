@@ -28,7 +28,7 @@ $page = new DashboardLayout();
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="date">* Date:</label>
-                        <input type="datetime-local" class="form-control" id="date" name="date" autofocus required>
+                        <input type="date" class="form-control" id="date" name="date" autofocus required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="name">* Fullname</label>

@@ -38,5 +38,20 @@ class Inquiry {
         }
     }
 
-
+    public static function fetch_all_inquiries($start_date, $end_date) {
+        $inquiries = false;
+        try {
+            $query = Connection::dbEngine()->prepare("SELECT inquiries.`date`, inquiries.`address`,
+                inquiries.`name`, inquiries.`email`, inquiries.`phone_no`, channels.`channel` as channel,
+                courses.`name` as course FROM inquiries 
+                    INNER JOIN channels ON inquiries.`channel_id` = channels.`id`
+                    INNER JOIN courses ON inquiries.`course_id`  = courses.`id`
+                    WHERE date >= :start_date && date <=:end_date");
+            $query->execute(array('start_date'=>$start_date, 'end_date'=>$end_date));
+            $inquiries = $query->fetchAll();
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+        return $inquiries;
+    }
 }

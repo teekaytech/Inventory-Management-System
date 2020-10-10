@@ -105,4 +105,12 @@ class DashboardController {
     public function delete_admin($id) {
         return Admin::delete($id);
     }
+
+    public function fetch_inquiries($start, $end) {
+        return Inquiry::fetch_all_inquiries($start, $end);
+    }
+
+    public function fetch_all_students($start, $end) {
+        return Admin::fetch_all_inquiries($start, $end);
+    }
 }
