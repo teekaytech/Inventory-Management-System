@@ -111,6 +111,6 @@ class DashboardController {
     }
 
     public function fetch_all_students($start, $end) {
-        return Admin::fetch_all_inquiries($start, $end);
+        return Student::fetch_all_students($start, $end);
     }
 }

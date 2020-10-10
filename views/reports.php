@@ -21,7 +21,6 @@ $page = new DashboardLayout();
         <?php $admin = $page->admin; ?>
         <section class="m-5">
             <h3>Reports Page</h3>
-            <p>Enquiries, Students</p>
             <p>Kindly select category to continue</p>
             <section class="reports">
                   <form method="post" action="../controllers/reporting.php" class="row">
@@ -48,10 +47,10 @@ $page = new DashboardLayout();
             </section>
             <table class="table mt-5">
                 <thead>
-                <tr>
-                    <?php if (isset($_SESSION['inquiries'])) {
-                        echo 'Data is set';
-                    } ?>
+                <tr class="table-success">
+                <?php
+                if (isset($_SESSION['inquiries'])) {?>
+                    <td colspan="8" align="center"><strong>Showing Reports for ENQUIRIES</strong></td>
                 </tr>
                 <tr>
                     <th scope="col">#</th>
@@ -63,27 +62,69 @@ $page = new DashboardLayout();
                     <th scope="col">Course</th>
                     <th scope="col">Channel</th>
                 </tr>
+                <?php }
+
+                if (isset($_SESSION['students'])) { ?>
+                    <tr class="table-success">
+                        <td colspan="10" align="center"><strong>Showing Reports for STUDENTS</strong></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date Registered</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone No</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Channel</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                    </tr>
+                <?php } ?>
                 </thead>
                 <tbody>
-                <?php if (!isset($_SESSION['inquiries'])) {
+                <?php if (!isset($_SESSION['inquiries']) && !isset($_SESSION['students'])) {
                     echo '<tr><td colspan="8" align="center">Please use the options above to query reports</td></tr>';
                 } else {
                     $counter = 1;
-                    foreach ($_SESSION['inquiries'] as $enquiry) { ?>
-                        <tr>
-                            <th scope="row"><?php echo $counter; ?></th>
-                            <td><?php echo date_format(date_create($enquiry['date']),"D/M/Y "); ?></td>
-                            <td><?php echo $enquiry['name']; ?></td>
-                            <td><?php echo $enquiry['address']; ?></td>
-                            <td><?php echo $enquiry['email']; ?></td>
-                            <td><?php echo $enquiry['phone_no']; ?></td>
-                            <td><?php echo $enquiry['course']; ?></td>
-                            <td><?php echo $enquiry['channel']; ?></td>
-                        </tr>
-                    <?php
-                        $counter += 1;
+                    if (isset($_SESSION['inquiries'])) {
+                        foreach ($_SESSION['inquiries'] as $enquiry) { ?>
+                            <tr>
+                                <th scope="row"><?php echo $counter; ?></th>
+                                <td><?php echo date_format(date_create($enquiry['date']),"d/M/Y "); ?></td>
+                                <td><?php echo $enquiry['name']; ?></td>
+                                <td><?php echo $enquiry['address']; ?></td>
+                                <td><?php echo $enquiry['email']; ?></td>
+                                <td><?php echo $enquiry['phone_no']; ?></td>
+                                <td><?php echo $enquiry['course']; ?></td>
+                                <td><?php echo $enquiry['channel']; ?></td>
+                            </tr>
+                            <?php
+                            $counter += 1;
+                        }
+                        unset($_SESSION['inquiries']);
                     }
-                    unset($_SESSION['inquiries']);
+
+                    if (isset($_SESSION['students'])) {
+                        foreach ($_SESSION['students'] as $student) { ?>
+                            <tr>
+                                <th scope="row"><?php echo $counter; ?></th>
+                                <td><?php echo date_format(date_create($student['created_at']),"d/M/Y"); ?></td>
+                                <td><?php echo $student['lastname'].' '.$student['firstname'].' '.$student['middlename']; ?></td>
+                                <td><?php echo $student['address']; ?></td>
+                                <td><?php echo $student['email']; ?></td>
+                                <td><?php echo $student['phone_no']; ?></td>
+                                <td><?php echo $student['course']; ?></td>
+                                <td><?php echo $student['channel']; ?></td>
+                                <td><?php echo date_format(date_create($student['start_date']), 'd/M/Y'); ?></td>
+                                <td><?php echo date_format(date_create($student['end_date']), 'd/M/Y'); ?></td>
+                            </tr>
+                            <?php
+                            $counter += 1;
+                        }
+                        unset($_SESSION['students']);
+                    }
+                    $counter = 1;
                 } ?>
                 </tbody>
             </table>

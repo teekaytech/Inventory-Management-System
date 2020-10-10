@@ -13,11 +13,11 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['fetch_reports']))) 
     if (!in_array(false, $data)) {
         if ($data['category'] == 'enquiries') {
             $inquiries = $activities->fetch_inquiries($data['start_date'], $data['end_date']);
-            if ($inquiries) { $_SESSION['inquiries'] = $inquiries; }
+            if (count($inquiries) != 0) { $_SESSION['inquiries'] = $inquiries; }
             else { $_SESSION['warning'] = 'No record found'; }
         } elseif ($data['category'] == 'students') {
-            $students = $activities->fetch_students($data['start_date'], $data['end_date']);
-            if ($students) { $_SESSION['inquiries'] = $students; }
+            $students = $activities->fetch_all_students($data['start_date'], $data['end_date']);
+            if (count($students) != 0) { $_SESSION['students'] = $students; }
             else { $_SESSION['warning'] = 'No record found'; }
         }
     }
