@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <title>Home page</title>
 </head>
-<body class="bg-primary">
+<body class="bg-success">
   <header class="w-100 p-2 text-white">
-    <img src="assets/img/Parach2.png" alt="parach-banner" class="m-0 p-0 banner-img">
+    <img src="assets/img/Parach2.png" alt="company-logo" class="m-0 p-0 banner-img">
     <a href="https://parachictacademy.com.ng/" class="text-white weblink" target="_blank">Official Website</a>
     <p class="m-0 ml-2 p-0 font-weight-bold"><em>... real-time Inventory Management System</em></p>
   </header>
@@ -33,9 +33,15 @@
               session_destroy();
           } ?>
           <button type="submit" class="btn btn-primary btn-block mt-4" name="login">Login</button>
+        <div class="text-primary text-center">
+          <span class="d-block">Available logins:</span>
+          <span class="d-inline-block">SuperUser: [Username: admin, Password: password]</span>
+          <span class="d-inline-block">Admin: [Username: teekaytech, Password: password]</span>
+        </div>
+
       </form>
     <footer class="text-center mt-5 pb-2">
-      <p class="footer-text">Copyright &copy; Parach Computers, 2020.</p>
+      <a href="https://taofeekolalere.me" target="_blank" class="footer-text">Copyright &copy; Teekaytech, 2020. </a>
     </footer>
     </section>
   </main>

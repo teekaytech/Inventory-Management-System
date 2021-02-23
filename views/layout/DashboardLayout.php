@@ -67,6 +67,7 @@ class DashboardLayout {
                      <a href="#SuperUserMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Super Admin</a>
                      <ul class="collapse list-unstyled" id="SuperUserMenu">
                          <li class="sub-list"><a href="admins.php">Admins</a></li>
+                         <li class="sub-list"><a href="tutors.php">Tutors</a></li>
                          <li class="sub-list"><a href="reports.php">Reports</a></li>
                      </ul>
                  </li>
@@ -104,7 +105,7 @@ class DashboardLayout {
     public function footer() {
         ?>
         <footer class="footer">
-            <p class="m-0">Copyright &copy; Parach Computers, 2020.</p>
+            <a href="https://www.linkedin.com/in/olaleretaofeek/" class="m-0">Copyright &copy; Teekaytech, 2020.</a>
         </footer>
         <?php
     }

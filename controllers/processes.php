@@ -110,3 +110,16 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['delete_admin']))) {
     else { $_SESSION['warning'] = 'Unable to delete admin. Please, try again!'; }
     header('location: ../views/admins.php');
 }
+
+if (($_SERVER["REQUEST_METHOD"] == "POST") && (isset($_POST['create_tutor']))) {
+    $data['username'] = $activities->validate_data($_POST['username'], 'Username');
+    $data['course_id'] = $activities->validate_data($_POST['course_id'], 'Course Option');
+    $data['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    var_dump($data); die();
+    if (!in_array(false, $data)) {
+        if ($activities->create_new_admin($data)) { $_SESSION['success'] = 'Admin registered successfully.'; }
+        else { $_SESSION['warning'] = 'Unable to create new admin. Please, try again!'; }
+    }
+    header('location: ../views/admins.php');
+}
