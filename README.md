@@ -16,7 +16,6 @@ The app is designed to be used by two(2) users: the superuser, and the appointed
 - Can carry out all activities of an administrator
 - Manage (create, update, disable, delete) administrators by clicking on Super Admin > Admins.
 - Manage (create, update, disable, delete) tutors by clicking on Super Admin > Tutors.
-- Manage (create, update, disable, delete) tutors by clicking on Super Admin > Tutors.
 - Generate reports by clicking on Super Admin > Reports.
 
 ## Built with
