@@ -1,5 +1,8 @@
 <?php
 require_once '../models/admin.php';
+require_once '../models/course.php';
+require_once '../models/sourceChannel.php';
+require_once '../models/role.php';
 @session_start();
 
 class DashboardLayout {
@@ -50,15 +53,26 @@ class DashboardLayout {
              </div>
 
              <ul class="list-unstyled components py-4">
-                <li><a href="#">Admin Profile</a></li>
+                 <li><a href="dashboard.php">Home</a></li>
+                <li><a href="profile.php">Admin Profile</a></li>
                 <li>
-                   <a href="#RegSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Registration</a>
+                   <a href="#RegSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Forms</a>
                    <ul class="collapse list-unstyled" id="RegSubmenu">
-                      <li class="sub-list"><a href="#">New Enquiry</a></li>
-                      <li class="sub-list"><a href="#">Prospective Student</a></li>
+                      <li class="sub-list"><a href="enquiry.php">New Enquiry</a></li>
+                      <li class="sub-list"><a href="students.php">Prospective Student</a></li>
                    </ul>
                 </li>
-                <li><a href="#">Logout</a></li>
+                 <?php if ($this->admin['role_id'] == 0) { ?>
+                 <li>
+                     <a href="#SuperUserMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Super Admin</a>
+                     <ul class="collapse list-unstyled" id="SuperUserMenu">
+                         <li class="sub-list"><a href="admins.php">Admins</a></li>
+                         <li class="sub-list"><a href="tutors.php">Tutors</a></li>
+                         <li class="sub-list"><a href="reports.php">Reports</a></li>
+                     </ul>
+                 </li>
+                 <?php } ?>
+                <li><a href="../controllers/LogoutController.php">Logout</a></li>
              </ul>
           </nav>
         </div>
@@ -76,7 +90,7 @@ class DashboardLayout {
             <div class="w-25 ">
                 <div class="d-flex justify-content-end">
                     <div class="text-right px-2 pt-2">
-                        <span class="d-block"> <?php echo $this->admin['firstname'].' '.$this->admin['lastname']; ?></span>
+                        <span class="d-block"> <?php echo $this->admin['firstname'].' '.strtoupper($this->admin['lastname']); ?></span>
                         <a href="../controllers/LogoutController.php" class="text-white">Logout</a>
                     </div>
                     <div class="">
@@ -91,7 +105,7 @@ class DashboardLayout {
     public function footer() {
         ?>
         <footer class="footer">
-            <p class="m-0">Copyright &copy; Parach Computers, 2020.</p>
+            <a href="https://www.linkedin.com/in/olaleretaofeek/" class="m-0">Copyright &copy; Teekaytech, 2020.</a>
         </footer>
         <?php
     }
@@ -120,6 +134,49 @@ class DashboardLayout {
             });
         </script>
         <?php
+    }
+
+    public function notification_messages() {
+        if (isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></strong>
+            </div> <?php
+        }
+        if (isset($_SESSION['error'])) { ?>
+            <div class="alert alert-danger alert-block" id="message-alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></strong>
+            </div> <?php
+        }
+        if (isset($_SESSION['warning'])) { ?>
+            <div class="alert alert-warning alert-block" id="message-alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong><?php echo $_SESSION['warning']; unset($_SESSION['warning']); ?></strong>
+            </div> <?php
+        }
+        if (isset($_SESSION['info'])) { ?>
+            <div class="alert alert-info alert-block" id="message-alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong><?php echo $_SESSION['info']; unset($_SESSION['info']); ?></strong>
+            </div> <?php
+        }
+    }
+
+    public function all_courses() {
+        return Course::all_courses();
+    }
+
+    public function all_channels() {
+        return SourceChannel::all_courses();
+    }
+
+    public function all_roles(){
+        return Role::all_roles();
+    }
+
+    public function all_admins() {
+        return Admin::all_admins();
     }
 }
 
